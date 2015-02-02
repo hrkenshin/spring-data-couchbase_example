@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 (x64) (http://www.altova.com) by Jiyoun Lim (NHN ENTERTAINMENT CORPORATION) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1" jaxb:extensionBindingPrefixes="xjc" jaxb:version="2.1">
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:globalBindings>
+				<xjc:serializable uid="-6026937020915831338"/>
+				<jaxb:javaType name="java.util.Date" xmlType="xs:dateTime" parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime" printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime"/>
+				<jaxb:javaType name="java.util.Date" xmlType="xs:date" parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime" printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime"/>
+			</jaxb:globalBindings>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--기본 타입 정의-->
+	<xs:element name="_Entity" type="_Entity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstract Entity Element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="_Entity" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Abstract Entity Type</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="uuid" type="xs:string" use="required"/>
+		<xs:attribute name="type" type="xs:string" use="required"/>
+	</xs:complexType>
+	<!--데이타 엔티티 모델-->
+	<xs:element name="user_info" type="user_info" substitutionGroup="_Entity"/>
+	<xs:complexType name="user_info">
+		<xs:complexContent>
+			<xs:extension base="_Entity">
+				<xs:sequence>
+					<xs:element name="userid" type="xs:string"/>
+					<xs:element name="username" type="xs:string" default="anomymous"/>
+					<xs:element name="countrycode" type="xs:string" default="0"/>
+					<xs:element name="os" type="xs:int"/>
+					<xs:element name="comments" type="xs:string" minOccurs="0"/>
+					<xs:element name="regdt" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="log_game" type="log_game" substitutionGroup="_Entity"/>
+	<xs:complexType name="log_game">
+		<xs:complexContent>
+			<xs:extension base="_Entity">
+				<xs:sequence>
+					<xs:element name="userid" type="xs:string"/>
+					<xs:element name="fsno" type="xs:string" default="0"/>
+					<xs:element name="type" type="xs:int" default="0"/>
+					<xs:element name="money" type="xs:int" default="0"/>
+					<xs:element name="msg" type="xs:string" default="0"/>
+					<xs:element name="regdt" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
